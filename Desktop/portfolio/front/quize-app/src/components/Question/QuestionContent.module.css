@@ -1,0 +1,11 @@
+.QuestionContent {
+    width: 800px;
+    height: 75px;
+    padding: 25px;
+    text-align: center;
+    color: #e5989b;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: white;
+}

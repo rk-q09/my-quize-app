@@ -1,0 +1,17 @@
+.Home ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.Home li {
+    display: inline-block;
+    margin: 20px;
+}
+
+.Home a {
+    text-decoration: none;
+    color: black;
+}

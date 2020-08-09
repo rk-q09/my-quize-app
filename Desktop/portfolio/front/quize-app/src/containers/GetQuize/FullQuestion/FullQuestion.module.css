@@ -1,0 +1,23 @@
+.Choices {
+    width: 800px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.QuestionButton {
+    width: 350px;
+    height: 75px;
+    padding: 10px;
+    text-align: center;
+    color: #e5989b;
+    cursor: pointer;
+    display: inline-block;
+    margin: 20px 20px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.QuestionButton:hover {
+    background-color: #f5f4f6;
+}
