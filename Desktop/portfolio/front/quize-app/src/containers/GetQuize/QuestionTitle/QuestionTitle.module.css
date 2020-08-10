@@ -1,0 +1,29 @@
+.QuestionTitle {
+    background-color: #42408f;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    padding: 1px;
+    width: 600px;
+    height: 70px;
+    font-size: 18px;
+    position: relative;
+
+}
+
+.QuestionTitle p {
+    width: 150px;
+    position: absolute;
+    top: 5px;
+    left: 225px;
+    text-align: center;
+}
+
+.QuestionTitle p:hover {
+    cursor: pointer;
+}
+
+.QuestionTitle button {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}

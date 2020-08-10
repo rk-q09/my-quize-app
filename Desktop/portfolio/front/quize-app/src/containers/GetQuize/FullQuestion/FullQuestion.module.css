@@ -9,13 +9,15 @@
     height: 75px;
     padding: 10px;
     text-align: center;
-    color: #e5989b;
+    font-family: inherit;
+    font-size: 15px;
+    color: #febf63;
     cursor: pointer;
     display: inline-block;
     margin: 20px 20px;
-    background-color: white;
+    background-color: #42408f;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .QuestionButton:hover {

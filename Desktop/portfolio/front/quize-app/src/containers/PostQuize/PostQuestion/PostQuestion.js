@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import axios from '../../axios-base';
+import axios from '../../../axios-base';
+
+import styles from './PostQuestion.module.css';
 
 const PostQuestion = props => {
     const [questionContent, setQuestionContent] = useState("");
@@ -23,7 +25,7 @@ const PostQuestion = props => {
 
 
     return (
-       <div>
+       <div className={styles.PostQuestion}>
            <form onSubmit={questionRegistrationHandler}>
                <input
                    type="text"

@@ -1,8 +1,11 @@
 import React from 'react';
+import styles from './About.module.css';
 
 const About = () => {
     return (
-        <p>This is About Page</p>
+        <div className={styles.About}>
+            <h4>Welcome To QuizeApp</h4>
+        </div>
     );
 
 }

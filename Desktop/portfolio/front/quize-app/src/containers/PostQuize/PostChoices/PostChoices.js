@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axios-base';
+import axios from '../../../axios-base';
+
+import styles from './PostChoices.module.css';
 
 const PostChoices = props => {
     const [choices, setChoices] = useState({
@@ -97,8 +99,8 @@ const PostChoices = props => {
     }, [])
 
     return (
-    <div>
-        <p>{questionSize}</p>
+    <div className={styles.PostChoices}>
+        <p>{questionSize}問目</p>
         <div>
             <form onSubmit={questionRegistrationHandler}>
                 <div>

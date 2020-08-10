@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../../axios-base';
 
 import QuestionContent from  '../../../components/Question/QuestionContent';
+import QuizeResults from '../QuizeResults/QuizeResults';
 import styles from './FullQuestion.module.css';
 
 const FullQuestion = props => {
@@ -46,7 +47,10 @@ const FullQuestion = props => {
     }
       
     return gameEnded ? (
-        <div>Your score was {score}</div>
+        <QuizeResults 
+            score={score}
+            quizeLength={questionsData.length} 
+        />
     ) : questionsData.length > 0 ? (
         <div>
            <QuestionContent content={questionsData[currentIndex].content} />

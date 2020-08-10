@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/use-auth';
 
+import styles from './SignIn.module.css';
+
 const SignIn = props => { 
     const [userSignInInfo, setUserSignInInfo] = useState({
         email: "",
@@ -26,7 +28,7 @@ const SignIn = props => {
     };
 
     return (
-        <div>
+        <div className={styles.SignIn}>
             <form onSubmit={userLoginHandler}>
                 <input 
                     type="email" 

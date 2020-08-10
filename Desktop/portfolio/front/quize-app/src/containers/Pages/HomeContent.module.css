@@ -1,0 +1,10 @@
+.HomeContent {
+    width: 600px;
+    height: 600px;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.HomeContent a {
+    color: white;
+}

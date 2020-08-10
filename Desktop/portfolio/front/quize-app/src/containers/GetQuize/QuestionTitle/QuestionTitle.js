@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from '../../../axios-base';
+
+import styles from './QuestionTitle.module.css';
 
 const QuestionTitle = props => {
 
@@ -7,9 +10,23 @@ const QuestionTitle = props => {
         console.log('Clicked the question that number of', id);
     };
 
+    const deleteQuizeHandler = id => {
+        axios.delete('/quizes/' + id)
+            .then(response => {
+                console.log(response);
+                window.location.reload();
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     return (
-        <div>
-            <h1 onClick={() => questionSelectedHandler(props.id)}>{props.title}</h1>  
+        <div className={styles.QuestionTitle}>
+            <p onClick={() => questionSelectedHandler(props.id)}>{props.title}</p> 
+            <button 
+                onClick={() => { if (window.confirm('本当に削除してもよいですか?')) deleteQuizeHandler(props.id)}} >
+            delete</button> 
         </div>
     );
 };

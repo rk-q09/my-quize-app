@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../../axios-base';
+import axios from '../../../axios-base';
 
 const PostQuize = props => {
     const [quizeTitle, setQuizeTitle] = useState("");
@@ -34,7 +34,7 @@ const PostQuize = props => {
                    onChange={inputChangedHandler}
                    required
                 />
-                <button>Start Create Quize</button>
+                <button>Create Quize</button>
            </form>
        </div>
     );
