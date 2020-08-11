@@ -25,8 +25,10 @@ const QuestionTitle = props => {
         <div className={styles.QuestionTitle}>
             <p onClick={() => questionSelectedHandler(props.id)}>{props.title}</p> 
             <button 
-                onClick={() => { if (window.confirm('本当に削除してもよいですか?')) deleteQuizeHandler(props.id)}} >
-            delete</button> 
+                onClick={() => { if (window.confirm('本当に削除してもよいですか?')) deleteQuizeHandler(props.id)}} 
+                className={styles.DeleteButton}>
+                    delete
+            </button> 
         </div>
     );
 };

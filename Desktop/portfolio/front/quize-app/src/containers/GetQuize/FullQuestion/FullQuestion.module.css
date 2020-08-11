@@ -18,6 +18,7 @@
     background-color: #42408f;
     border: none;
     border-radius: 8px;
+    transition: .4s;
 }
 
 .QuestionButton:hover {

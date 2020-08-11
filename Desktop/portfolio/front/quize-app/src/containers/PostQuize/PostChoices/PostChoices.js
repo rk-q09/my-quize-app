@@ -29,6 +29,10 @@ const PostChoices = props => {
 
     const quizeId = localStorage.getItem('quize_id');
 
+    const choicesNumber = 4;
+
+    const questionsNumber = 5;
+
     const postChoice = async(choicesNumber) => {
         for ( let i = 1; i <= choicesNumber; i++ ) {
             const choice = `choice${i}`;
@@ -45,8 +49,14 @@ const PostChoices = props => {
     };
 
     const questionRegistrationHandler = event => {
-        postChoice(4);
-        props.history.push( '/quizes/' + quizeId + '/new' );
+        postChoice(choicesNumber);
+        if ( questionSize < questionsNumber ) {
+              props.history.push( '/quizes/' + quizeId + '/new' );
+        }
+        else {
+            props.history.push('/quizes');
+        };
+      
         event.preventDefault();
     };
 
@@ -81,8 +91,6 @@ const PostChoices = props => {
     const getQuestionSize = () => {
         axios.get('/quizes/' + quizeId)
             .then(response => {
-                console.log("PostChoice#getQuestionSize():", response);
-                console.log(response.data.questions.length);
                 setQuestionSize(response.data.questions.length);
             })
             .catch(error => {
@@ -104,64 +112,69 @@ const PostChoices = props => {
         <div>
             <form onSubmit={questionRegistrationHandler}>
                 <div>
-                <input
-                    type="text"
-                    name="choice1"
-                    placeholder="Choice1" 
-                    value={choices.choice1.content}
-                    onChange={inputChangedHandler}
-                    required
+                    <input
+                        type="text"
+                        name="choice1"
+                        placeholder="Choice1" 
+                        value={choices.choice1.content}
+                        className={styles.FormInput}
+                        onChange={inputChangedHandler}
+                        required
                     />
                 </div>
                 <div>
                     <input
-                    type="text"
-                    name="choice2"
-                    placeholder="Choice2" 
-                    value={choices.choice2.content}
-                    onChange={inputChangedHandler}
-                    required
+                        type="text"
+                        name="choice2"
+                        placeholder="Choice2" 
+                        value={choices.choice2.content}
+                        className={styles.FormInput}
+                        onChange={inputChangedHandler}
+                        required
                     />
                 </div>
                 <div>
                     <input
-                    type="text"
-                    name="choice3"
-                    placeholder="Choice3" 
-                    value={choices.choice3.content}
-                    onChange={inputChangedHandler}
-                    required
+                        type="text"
+                        name="choice3"
+                        placeholder="Choice3" 
+                        value={choices.choice3.content}
+                        className={styles.FormInput}
+                        onChange={inputChangedHandler}
+                        required
                     />
                 </div>
                 <div>
                     <input
-                    type="text"
-                    name="choice4"
-                    placeholder="Choice4" 
-                    value={choices.choice4.content}
-                    onChange={inputChangedHandler}
-                    required
+                        type="text"
+                        name="choice4"
+                        placeholder="Choice4" 
+                        value={choices.choice4.content}
+                        className={styles.FormInput}
+                        onChange={inputChangedHandler}
+                        required
                     />
                 </div>
-                <div>
+                <div className={styles.Options}>
+                    <p>正解は...</p>
                     <label>
                         <input type="radio" name="choice1" checked={selectedChoice === 'choice1'} onChange={isAnswerHandler} />
-                        Option1
+                        Choice1
                     </label>
                     <label>
                         <input type="radio" name="choice2" checked={selectedChoice === 'choice2'} onChange={isAnswerHandler} />
-                        Option2
+                        Choice2
                     </label>
                     <label>
                         <input type="radio" name="choice3" checked={selectedChoice === 'choice3'} onChange={isAnswerHandler} />
-                        Option3
+                        Choice3
                     </label>
                     <label>
                         <input type="radio" name="choice4" checked={selectedChoice === 'choice4'} onChange={isAnswerHandler} />
-                        Option4
+                        Choice4
                     </label>
                 </div>
-                <button>選択肢を投稿する</button>
+                <button className={styles.FormButton}>選択肢を投稿する</button>
             </form>
         </div>
     </div>

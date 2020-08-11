@@ -7,4 +7,10 @@
 
 .HomeContent a {
     color: white;
+    font-family: 'Nico Moji';
+}
+
+.HomeContent a:hover {
+    color: #42408f;
+    transition: .4s;
 }

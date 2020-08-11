@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/use-auth';
 
 import styles from './SignIn.module.css';
@@ -30,23 +31,30 @@ const SignIn = props => {
     return (
         <div className={styles.SignIn}>
             <form onSubmit={userLoginHandler}>
-                <input 
-                    type="email" 
-                    name="email" 
-                    placeholder="Email" 
-                    value={userSignInInfo.email} 
-                    onChange={inputChangedHandler} 
-                    required 
-                />
-                <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="Password" 
-                    value={userSignInInfo.password} 
-                    onChange={inputChangedHandler} 
-                    required 
-                />
-                <button>Login</button>
+                <div>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Email" 
+                        value={userSignInInfo.email} 
+                        className={styles.FormInput}
+                        onChange={inputChangedHandler} 
+                        required 
+                    />
+                </div>
+                <div>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="Password" 
+                        value={userSignInInfo.password} 
+                        className={styles.FormInput}
+                        onChange={inputChangedHandler} 
+                        required 
+                    />
+                </div>
+                <button className={styles.FormButton}>Login</button>
+                <p>アカウントをお持ちでないですか...？ <Link to='/signup'>Sign Up</Link></p>
             </form>
         </div>
     );

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/use-auth'
 
+import styles from './SignIn.module.css';
+
 const Signup = () => { 
     const [userInfo, setUserInfo] = useState({
         user_name: "",
@@ -29,41 +31,53 @@ const Signup = () => {
     };
 
     return (
-        <div>
+        <div className={styles.SignIn}>
             <form onSubmit={userRegistrationHandler}>
-                <input 
-                    type="name" 
-                    name="user_name" 
-                    placeholder="User name" 
-                    value={userInfo.user_name} 
-                    onChange={inputChangedHandler} 
-                    required 
-                />
-                <input 
-                    type="email" 
-                    name="email" 
-                    placeholder="Email" 
-                    value={userInfo.email} 
-                    onChange={inputChangedHandler} 
-                    required 
-                />
-                <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="Password" 
-                    value={userInfo.password} 
-                    onChange={inputChangedHandler} 
-                    required 
-                />
+                <div>
+                    <input 
+                        type="name" 
+                        name="user_name" 
+                        placeholder="User name" 
+                        value={userInfo.user_name}
+                        className={styles.FormInput} 
+                        onChange={inputChangedHandler} 
+                        required 
+                    />
+                </div>
+                <div>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Email" 
+                        value={userInfo.email} 
+                        className={styles.FormInput} 
+                        onChange={inputChangedHandler} 
+                        required 
+                    />
+                </div>
+                <div>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="Password" 
+                        value={userInfo.password}
+                        className={styles.FormInput}  
+                        onChange={inputChangedHandler} 
+                        required 
+                    />
+                </div>
+                <div>
                   <input 
                     type="password" 
                     name="password_confirmation" 
                     placeholder="Password confirmation" 
                     value={userInfo.password_confirmation} 
+                    className={styles.FormInput}  
                     onChange={inputChangedHandler} 
                     required 
-                />
-                <button>Register</button>
+                  />
+                </div>
+                <button className={styles.FormButton}>Sign Up</button>
             </form>
         </div>
     );

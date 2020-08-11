@@ -1,12 +1,7 @@
-.PostChoices {
+.PostQuize {
     width: 600px;
     margin: 15px auto;
     text-align: center;
-}
-
-.Options {
-    margin-top: 15px;
-    margin-bottom: 25px;
 }
 
 .FormInput {
@@ -29,4 +24,3 @@
   background: #42408f;
   color: white;
 }
-

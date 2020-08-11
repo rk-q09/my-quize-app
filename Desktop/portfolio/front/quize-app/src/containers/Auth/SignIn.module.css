@@ -3,3 +3,38 @@
     margin: 15px auto;
     text-align: center;
 }
+
+.SignIn a {
+    color: white;
+    font-family: 'Nico Moji';
+}
+
+.SignIn a:hover {
+    color: #42408f;
+    transition: .4s;
+}
+
+.SignIn p {
+    font-size: 14px;
+}
+
+.FormInput {
+    width: 250px;
+    height: 25px;
+    margin: 10px auto;
+}
+
+.FormButton {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #42408f;
+  border: solid 2px #42408f;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.FormButton:hover {
+  background: #42408f;
+  color: white;
+}

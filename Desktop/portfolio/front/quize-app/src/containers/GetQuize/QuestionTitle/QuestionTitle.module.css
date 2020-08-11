@@ -22,8 +22,18 @@
     cursor: pointer;
 }
 
-.QuestionTitle button {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
+.DeleteButton {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 0.3em 1em;
+  color: #ff9c71;
+  border: solid 2px #ff9c71;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.DeleteButton:hover {
+  background: #ff9c71;
+  color: white;
 }
