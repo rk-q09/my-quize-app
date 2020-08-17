@@ -8,11 +8,12 @@ import HomeContent from './HomeContent';
 import Signup from '../Auth/Signup';
 import SignIn from '../Auth/SignIn';
 import SignOut from '../Auth/SignOut';
-import QuestionList from '../GetQuize/QuizeList/QuizeList';
+import QuizeList from '../GetQuize/QuizeList/QuizeList';
 import FullQuestion from '../GetQuize/FullQuestion/FullQuestion';
 import NavigationItems from '../../components/Navigation/NavigationItems';
 import PostQuestion from '../PostQuize/PostQuestion/PostQuestion';
 import PostChoices from '../PostQuize/PostChoices/PostChoices';
+import OtherUsersQuizeList from '../GetQuize/OtherUsersQuizeList/OtherUsersQuizeList';
 
 const Home = () => {
     const auth = useAuth();
@@ -24,8 +25,9 @@ const Home = () => {
     const routes = (
         <Switch>
             <Route exact path='/' component={HomeContent} /> 
-            <Route exact path='/quizes' component={QuestionList} /> 
+            <Route exact path='/myquizes' component={QuizeList} /> 
             <Route exact path='/quizes/:id'  component={FullQuestion} />
+            <Route exact path='/users/:id/quizes' component={OtherUsersQuizeList}/ >
             <Route path='/quizes/:id/new' component={PostQuestion} />
             <Route path='/questions/:id/new' component={PostChoices} />
             <Route path="/about" component={About} />

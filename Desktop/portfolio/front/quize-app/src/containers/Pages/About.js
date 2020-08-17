@@ -4,7 +4,8 @@ import styles from './About.module.css';
 const About = () => {
     return (
         <div className={styles.About}>
-            <h4>Welcome To QuizeApp</h4>
+            <h3>Welcome To QuizeApp</h3>
+            <p>クイズに挑戦してみよう</p>
         </div>
     );
 

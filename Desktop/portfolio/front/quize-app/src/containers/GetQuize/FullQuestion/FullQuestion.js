@@ -50,6 +50,9 @@ const FullQuestion = props => {
         <QuizeResults 
             score={score}
             quizeLength={questionsData.length} 
+            quizeId={props.match.params.id}
+            history={props.history}
+            match={props.match}
         />
     ) : questionsData.length > 0 ? (
         <div>

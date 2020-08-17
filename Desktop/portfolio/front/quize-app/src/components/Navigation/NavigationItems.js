@@ -10,7 +10,7 @@ const NavigationItems = props => (
             {props.isAuthenticated 
                 ? (
                     <>
-                        <li><Link to="/quizes">MyQuizes</Link></li>
+                        <li><Link to="/myquizes">MyQuizes</Link></li>
                         <li><Link to="/signout">SignOut</Link></li>
                     </>
                 )

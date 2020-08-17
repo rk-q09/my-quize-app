@@ -12,11 +12,12 @@ const QuizeList = props => {
 
         axios.get('/users/' + user_id +' /quizes')
             .then(res => {
+                console.log("QuizeList", res.data);
                 const fetchedQuizeList = [];
                 for (let key in res.data) {
                     fetchedQuizeList.push({
                         id: res.data[key].id,
-                        title: res.data[key].title,
+                        title: res.data[key].title
                     });
                 }
                 setQuizeList(fetchedQuizeList);
@@ -34,6 +35,7 @@ const QuizeList = props => {
                 title={question.title}
                 id={question.id}
                 history={props.history}
+                authorized={true}
             />
         );
     });

@@ -7,7 +7,7 @@ const QuestionTitle = props => {
 
     const questionSelectedHandler = (id) => {
         props.history.push( '/quizes/' + id );
-        console.log('Clicked the question that number of', id);
+        console.log(props);
     };
 
     const deleteQuizeHandler = id => {
@@ -24,11 +24,14 @@ const QuestionTitle = props => {
     return (
         <div className={styles.QuestionTitle}>
             <p onClick={() => questionSelectedHandler(props.id)}>{props.title}</p> 
-            <button 
-                onClick={() => { if (window.confirm('本当に削除してもよいですか?')) deleteQuizeHandler(props.id)}} 
-                className={styles.DeleteButton}>
-                    delete
-            </button> 
+            {props.authorizd ? (
+                <button 
+                    onClick={() => { if (window.confirm('本当に削除してもよいですか?')) deleteQuizeHandler(props.id)}} 
+                    className={styles.DeleteButton}>
+                        delete
+                </button> 
+            ) :
+            null}
         </div>
     );
 };

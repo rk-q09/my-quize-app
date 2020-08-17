@@ -4,3 +4,13 @@
     margin: 15px auto;
     text-align: center;
 }
+
+.QuizeResults a {
+    color: white;
+}
+
+.OtherQuizeLink:hover {
+    cursor: pointer;
+    color: #42408f;
+    transition: .4s;
+}
