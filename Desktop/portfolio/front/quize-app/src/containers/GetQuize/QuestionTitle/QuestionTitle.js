@@ -24,7 +24,7 @@ const QuestionTitle = props => {
     return (
         <div className={styles.QuestionTitle}>
             <p onClick={() => questionSelectedHandler(props.id)}>{props.title}</p> 
-            {props.authorizd ? (
+            {props.authorized ? (
                 <button 
                     onClick={() => { if (window.confirm('本当に削除してもよいですか?')) deleteQuizeHandler(props.id)}} 
                     className={styles.DeleteButton}>
