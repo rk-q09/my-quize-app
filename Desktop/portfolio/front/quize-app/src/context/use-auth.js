@@ -14,6 +14,7 @@ export const useAuth = () => {
 
 const useProvideAuth = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [errorMessages, setErrorMessages] = useState([]);
 
     const signUp = (userName, email, password, passwordConfirmation) => {
         axios.post('/registrations', {
@@ -26,11 +27,13 @@ const useProvideAuth = () => {
         },
         { withCredentials: true })
             .then(response => {
-                console.log("registration res", response);
+                if ( response.data.status === "created") {
+                    console.log("registration res", response.data);
+                } else {
+                    console.log("registration res", response.data.errors);
+                    setErrorMessages(response.data.errors);
+                }
             })
-            .catch(error => {
-                console.log("registration error", error);
-            });
     }
 
     const checkLoggedIn = () => {
@@ -44,7 +47,7 @@ const useProvideAuth = () => {
                 };
             })
             .catch(error => {
-                console.log("check login error", error);
+                console.log("check login error", error.response.data.errors);
             });
     };
 
@@ -83,6 +86,7 @@ const useProvideAuth = () => {
         signIn,
         signOut,
         checkLoggedIn,
-        isLoggedIn
+        isLoggedIn,
+        errorMessages
     };
 };

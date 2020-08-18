@@ -3,7 +3,7 @@ import { useAuth } from '../../context/use-auth'
 
 import styles from './SignIn.module.css';
 
-const Signup = () => { 
+const Signup = props => { 
     const [userInfo, setUserInfo] = useState({
         user_name: "",
         email: "",
@@ -20,6 +20,7 @@ const Signup = () => {
             userInfo.password,
             userInfo.password_confirmation
         );
+        props.history.push('/');
         event.preventDefault();
     };
 
@@ -32,6 +33,15 @@ const Signup = () => {
 
     return (
         <div className={styles.SignIn}>
+            {auth.errorMessages ? (
+                <div className={styles.ErrorMessages}>
+                    <ul>
+                        {auth.errorMessages.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            ) : null}
             <form onSubmit={userRegistrationHandler}>
                 <div>
                     <input 
