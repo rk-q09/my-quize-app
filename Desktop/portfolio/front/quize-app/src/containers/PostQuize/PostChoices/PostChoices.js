@@ -40,10 +40,6 @@ const PostChoices = props => {
             await axios.post('/questions/' + props.match.params.id + '/choices', {
                 content: choices[choice].content,
                 is_answer: choices[choice].is_answer
-            }).then(response => {
-                console.log("Post Choices", response);
-            }).catch(error => {
-                console.log(error);
             });
         };
     };
@@ -51,12 +47,10 @@ const PostChoices = props => {
     const questionRegistrationHandler = event => {
         postChoice(choicesNumber);
         if ( questionSize < questionsNumber ) {
-              props.history.push( '/quizes/' + quizeId + '/new' );
-        }
-        else {
+            props.history.push( '/quizes/' + quizeId + '/new' );
+        } else {
             props.history.push('/quizes');
-        };
-      
+        }
         event.preventDefault();
     };
 
@@ -84,7 +78,6 @@ const PostChoices = props => {
             ...choices[selectedChoice],
             is_answer: true
         };
-        console.log("setAnswer():", selectedAnswerChoices);
         setChoices(selectedAnswerChoices);
     };
 
@@ -92,9 +85,6 @@ const PostChoices = props => {
         axios.get('/quizes/' + quizeId)
             .then(response => {
                 setQuestionSize(response.data.questions.length);
-            })
-            .catch(error => {
-                console.log(error);
             });
     };
 
@@ -104,7 +94,7 @@ const PostChoices = props => {
 
     useEffect(() => {
         getQuestionSize();
-    }, [])
+    }, []);
 
     return (
     <div className={styles.PostChoices}>

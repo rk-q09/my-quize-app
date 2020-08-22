@@ -10,7 +10,6 @@ const About = props => {
     const getNewQuizes = () => {
         axios.get('/new_quizes')
             .then(res => {
-                console.log(res.data);
                 const fetchedQuizeList = [];
                 for (let key in res.data) {
                     fetchedQuizeList.push({
@@ -20,9 +19,6 @@ const About = props => {
                 }
                 setQuizeList(fetchedQuizeList);
             })
-            .catch(error => {
-                console.log(error);
-            });
     };
 
     const quizes = quizeList.map( question => {

@@ -15,10 +15,10 @@ const SignIn = props => {
     const userLoginHandler = event => {
         auth.signIn(
             userSignInInfo.email,
-            userSignInInfo.password
+            userSignInInfo.password,
+            props.history
         );
         event.preventDefault();
-        props.history.push('/');
     };
 
     const inputChangedHandler = event => {
@@ -30,6 +30,11 @@ const SignIn = props => {
 
     return (
         <div className={styles.SignIn}>
+            {auth.signInErrorMessages.length > 0 ? (
+                <div className={styles.ErrorMessages}>
+                    <p>{auth.signInErrorMessages}</p>
+                </div>
+            ) : null }
             <form onSubmit={userLoginHandler}>
                 <div>
                     <input 

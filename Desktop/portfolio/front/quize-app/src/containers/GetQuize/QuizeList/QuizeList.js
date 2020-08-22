@@ -12,7 +12,6 @@ const QuizeList = props => {
 
         axios.get('/users/' + user_id +' /quizes')
             .then(res => {
-                console.log("QuizeList", res.data);
                 const fetchedQuizeList = [];
                 for (let key in res.data) {
                     fetchedQuizeList.push({

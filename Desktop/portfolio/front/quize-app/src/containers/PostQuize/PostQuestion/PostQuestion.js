@@ -5,6 +5,7 @@ import styles from './PostQuestion.module.css';
 
 const PostQuestion = props => {
     const [questionContent, setQuestionContent] = useState("");
+    const [errorMessages, setErrorMessages] = useState([]);
 
     const [questionSize, setQuestionSize] = useState(0);
     
@@ -12,11 +13,12 @@ const PostQuestion = props => {
         axios.post('/quizes/' + props.match.params.id + '/questions', {
             content: questionContent
         }).then(response => {
-            console.log("Post Question", response);
-            localStorage.setItem('quize_id', props.match.params.id);
-            props.history.push( '/questions/' + response.data.id + '/new' );
-        }).catch(error => {
-            console.log(error);
+            if ( response.data.status === "created" ) {
+                localStorage.setItem('quize_id', props.match.params.id);
+                props.history.push( '/questions/' + response.data.id + '/new' );
+            } else {
+                setErrorMessages(response.data.errors);
+            }
         });
         event.preventDefault();
     };
@@ -29,9 +31,6 @@ const PostQuestion = props => {
         axios.get('/quizes/' + props.match.params.id)
             .then(response => {
                 setQuestionSize(response.data.questions.length + 1);
-            })
-            .catch(error => {
-                console.log(error);
             });
     };
 
@@ -44,6 +43,15 @@ const PostQuestion = props => {
        <div className={styles.PostQuestion}>
            <p>{questionSize}問目</p>
            <p>質問文を入力して下さい</p>
+           {errorMessages.length > 0 ? (
+                <div className={styles.ErrorMessages}>
+                    <ul>
+                        {errorMessages.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            ) : null }
            <form onSubmit={questionRegistrationHandler}>
                 <div>
                     <input

@@ -14,9 +14,10 @@ export const useAuth = () => {
 
 const useProvideAuth = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [errorMessages, setErrorMessages] = useState([]);
+    const [signInErrorMessages, setSignInErrorMessages] = useState('');
+    const [signUpErrorMessages, setSignUpErrorMessages] = useState([]);
 
-    const signUp = (userName, email, password, passwordConfirmation) => {
+    const signUp = (userName, email, password, passwordConfirmation, history) => {
         axios.post('/registrations', {
             user: {
                 user_name: userName,
@@ -27,31 +28,26 @@ const useProvideAuth = () => {
         },
         { withCredentials: true })
             .then(response => {
-                if ( response.data.status === "created") {
-                    console.log("registration res", response.data);
+                if ( response.data.status === "created" ) {
+                    history.push('/');
                 } else {
-                    console.log("registration res", response.data.errors);
-                    setErrorMessages(response.data.errors);
+                    setSignUpErrorMessages(response.data.errors);
                 }
-            })
+            });
     }
 
     const checkLoggedIn = () => {
         axios.get('/logged_in', { withCredentials: true} )
             .then(response => {
-                console.log("logged in?", response);
                 if ( response.data.logged_in ) {
                     setIsLoggedIn(true);
                 } else if ( !response.data.logged_in) {
                     setIsLoggedIn(false);
                 };
             })
-            .catch(error => {
-                console.log("check login error", error.response.data.errors);
-            });
     };
 
-    const signIn = (email, password) => {
+    const signIn = (email, password, history) => {
         axios.post('/sessions', {
             user: {
                 email: email,
@@ -60,13 +56,14 @@ const useProvideAuth = () => {
         }, 
         { withCredentials: true })
             .then(response => {
-                console.log("your user id is", response.data.user.id);
-                localStorage.setItem('user_id', response.data.user.id)
-                checkLoggedIn();
+                if ( response.data.status === "created" ) {
+                    localStorage.setItem('user_id', response.data.user.id)
+                    checkLoggedIn();
+                    history.push('/');
+                } else {
+                    setSignInErrorMessages(response.data.errors);
+                }               
             })
-            .catch(error => {
-                console.log("login error", error);
-            });
     };
 
     const signOut = () => {
@@ -76,9 +73,6 @@ const useProvideAuth = () => {
                 localStorage.removeItem('user_id');
                 checkLoggedIn();
             })
-            .catch(error => {
-                console.log("logout error", error);
-            });
     };
 
     return {
@@ -87,6 +81,7 @@ const useProvideAuth = () => {
         signOut,
         checkLoggedIn,
         isLoggedIn,
-        errorMessages
+        signUpErrorMessages,
+        signInErrorMessages
     };
 };

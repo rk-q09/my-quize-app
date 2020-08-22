@@ -18,9 +18,9 @@ const Signup = props => {
             userInfo.user_name,
             userInfo.email,
             userInfo.password,
-            userInfo.password_confirmation
+            userInfo.password_confirmation,
+            props.history
         );
-        props.history.push('/');
         event.preventDefault();
     };
 
@@ -33,15 +33,15 @@ const Signup = props => {
 
     return (
         <div className={styles.SignIn}>
-            {auth.errorMessages ? (
+            {auth.signUpErrorMessages.length > 0 ? (
                 <div className={styles.ErrorMessages}>
                     <ul>
-                        {auth.errorMessages.map(error => (
+                        {auth.signUpErrorMessages.map(error => (
                             <li key={error}>{error}</li>
                         ))}
                     </ul>
                 </div>
-            ) : null}
+            ) : null }
             <form onSubmit={userRegistrationHandler}>
                 <div>
                     <input 

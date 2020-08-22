@@ -5,6 +5,7 @@ import styles from './PostQuize.module.css';
 
 const PostQuize = props => {
     const [quizeTitle, setQuizeTitle] = useState("");
+    const [errorMessages, setErrorMessages] = useState([]);
 
     const userId = localStorage.getItem('user_id');
 
@@ -12,10 +13,11 @@ const PostQuize = props => {
         axios.post('/users/' + userId + '/quizes', {
             title: quizeTitle
         }).then(response => {
-            console.log(response);
-            props.history.push( '/quizes/' + response.data.id + '/new' );
-        }).catch(error => {
-            console.log(error);
+            if ( response.data.status === "created") {
+                props.history.push( '/quizes/' + response.data.id + '/new' );
+            } else {
+                setErrorMessages(response.data.errors);
+            }
         });
         event.preventDefault();
     };
@@ -27,7 +29,17 @@ const PostQuize = props => {
 
     return (
        <div className={styles.PostQuize}>
+           <p>ようこそQuizeAppへ</p>
            <p>作成したいクイズのタイトルを入力して下さい</p>
+           {errorMessages.length > 0 ? (
+                <div className={styles.ErrorMessages}>
+                    <ul>
+                        {errorMessages.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+            ) : null }
            <form onSubmit={quizeRegistrationHandler}>
                <div>
                     <input

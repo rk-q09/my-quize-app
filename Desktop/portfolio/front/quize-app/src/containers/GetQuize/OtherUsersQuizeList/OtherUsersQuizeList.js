@@ -27,9 +27,6 @@ const OtherUsersQuizeList = props => {
         axios.get('/users/' + props.match.params.id)
             .then(res => {
                 setUserName(res.data.user_name);
-            })
-            .catch(error => {
-                console.log(error);
             });
     };
 
