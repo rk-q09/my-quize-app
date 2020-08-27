@@ -19,6 +19,9 @@ const PostQuestion = props => {
             } else {
                 setErrorMessages(response.data.errors);
             }
+        })
+        .catch(error => {
+            setErrorMessages([error.message]);
         });
         event.preventDefault();
     };

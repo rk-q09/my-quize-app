@@ -24,3 +24,13 @@
   background: #42408f;
   color: white;
 }
+
+.ErrorMessages {
+    color: red;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.ErrorMessages li{
+    margin-bottom: 1px;
+}

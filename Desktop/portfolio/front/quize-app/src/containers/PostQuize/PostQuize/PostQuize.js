@@ -18,6 +18,9 @@ const PostQuize = props => {
             } else {
                 setErrorMessages(response.data.errors);
             }
+        })
+        .catch(error => {
+            setErrorMessages([error.message]);
         });
         event.preventDefault();
     };

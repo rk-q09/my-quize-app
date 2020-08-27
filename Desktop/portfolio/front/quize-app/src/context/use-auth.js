@@ -33,6 +33,9 @@ const useProvideAuth = () => {
                 } else {
                     setSignUpErrorMessages(response.data.errors);
                 }
+            })
+            .catch(error => {
+                setSignUpErrorMessages([error.message]);
             });
     }
 
@@ -64,6 +67,9 @@ const useProvideAuth = () => {
                     setSignInErrorMessages(response.data.errors);
                 }               
             })
+            .catch(error => {
+                setSignInErrorMessages([error.message]);
+            });
     };
 
     const signOut = () => {
