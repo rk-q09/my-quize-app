@@ -49,7 +49,7 @@ const PostChoices = props => {
         if ( questionSize < questionsNumber ) {
             props.history.push( '/quizes/' + quizeId + '/new' );
         } else {
-            props.history.push('/quizes');
+            props.history.push('/myquizes');
         }
         event.preventDefault();
     };
@@ -81,20 +81,21 @@ const PostChoices = props => {
         setChoices(selectedAnswerChoices);
     };
 
-    const getQuestionSize = () => {
-        axios.get('/quizes/' + quizeId)
-            .then(response => {
-                setQuestionSize(response.data.questions.length);
-            });
-    };
-
     useEffect(() => {
         setAnswer();
+        // eslint-disable-next-line
     }, [selectedChoice]);
+    
 
     useEffect(() => {
+        const getQuestionSize = () => {
+            axios.get('/quizes/' + quizeId)
+                .then(response => {
+                    setQuestionSize(response.data.questions.length);
+                });
+        };
         getQuestionSize();
-    }, []);
+    }, [quizeId]);
 
     return (
     <div className={styles.PostChoices}>

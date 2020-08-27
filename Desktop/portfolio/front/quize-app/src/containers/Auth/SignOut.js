@@ -7,7 +7,7 @@ const SignOut = props => {
     
     useEffect(() => {
         auth.signOut();
-    }, []);
+    }, [auth]);
 
     return <Redirect to="/" />;
 };

@@ -28,18 +28,17 @@ const PostQuestion = props => {
 
     const inputChangedHandler = event => {
         setQuestionContent(event.target.value);
-    }
-
-    const getQuestionSize = () => {
-        axios.get('/quizes/' + props.match.params.id)
-            .then(response => {
-                setQuestionSize(response.data.questions.length + 1);
-            });
     };
 
     useEffect(() => {
+        const getQuestionSize = () => {
+            axios.get('/quizes/' + props.match.params.id)
+                .then(response => {
+                    setQuestionSize(response.data.questions.length + 1);
+                });
+        };
         getQuestionSize();
-    }, [])
+    }, [props.match.params.id])
 
 
     return (

@@ -6,19 +6,18 @@ import styles from './QuizeResults.module.css';
 const QuizeResults = props => {
     const [userId, setUserId] = useState(null);
 
-    const getUserId = () => {
-        axios.get('/quizes/' + props.quizeId + '/get_user_id')
-            .then(response => {
-                setUserId(response.data.user_id);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
     useEffect(() => {
+        const getUserId = () => {
+            axios.get('/quizes/' + props.quizeId + '/get_user_id')
+                .then(response => {
+                    setUserId(response.data.user_id);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
         getUserId();
-    }, []);
+    }, [props.quizeId]);
 
     const getOtherUsersQuizeHandler = () => {
         props.history.push('/users/' + userId + '/quizes');

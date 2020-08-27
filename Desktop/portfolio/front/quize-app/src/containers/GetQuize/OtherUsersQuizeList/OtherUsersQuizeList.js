@@ -8,32 +8,31 @@ const OtherUsersQuizeList = props => {
     const [otherUsersQuizeList, setOtherUsersQuizeList] = useState([]);
     const [userName, setUserName] = useState('');
 
-    const getOtherUsersQuizeList = () => {
-        axios.get('/users/' + props.match.params.id + ' /quizes')
-            .then(res => {
-                console.log("QuizeList", res.data);
-                const fetchedQuizeList = [];
-                for (let key in res.data) {
-                    fetchedQuizeList.push({
-                        id: res.data[key].id,
-                        title: res.data[key].title,
-                    });
-                }
-                setOtherUsersQuizeList(fetchedQuizeList);
-            });
-    }
-
-    const getUserName = () => {
-        axios.get('/users/' + props.match.params.id)
-            .then(res => {
-                setUserName(res.data.user_name);
-            });
-    };
-
     useEffect(() => {
+        const getOtherUsersQuizeList = () => {
+            axios.get('/users/' + props.match.params.id + ' /quizes')
+                .then(res => {
+                    const fetchedQuizeList = [];
+                    for (let key in res.data) {
+                        fetchedQuizeList.push({
+                            id: res.data[key].id,
+                            title: res.data[key].title,
+                        });
+                    }
+                    setOtherUsersQuizeList(fetchedQuizeList);
+                });
+        };
+
+        const getUserName = () => {
+            axios.get('/users/' + props.match.params.id)
+                .then(res => {
+                    setUserName(res.data.user_name);
+                });
+        };
+        
         getOtherUsersQuizeList();
         getUserName();
-    }, []);
+    }, [props.match.params.id]);
 
     const quizes = otherUsersQuizeList.map( question => {
         return (

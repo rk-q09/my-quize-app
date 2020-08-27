@@ -12,27 +12,26 @@ const FullQuestion = props => {
     const [score, setScore] = useState(0);
     const [gameEnded, setGameEnded] = useState(false);
 
-    const setQuestions = () => {
-        if ( props.match.params.id ) {
-            axios.get('/quizes/' + props.match.params.id)
-            .then(res => {
-                const fetchedQuestions = [];
-                for (let key in res.data.questions) {
-                    fetchedQuestions.push({
-                        id: res.data.questions[key].id,
-                        content: res.data.questions[key].content,
-                        choices: res.data.questions[key].choices
-                    });
-                }
-                setQuestionSize(res.data.questions.length);
-                setQuestionsData(fetchedQuestions);
-            });
-        };
-    };
-
     useEffect(() => {
+        const setQuestions = () => {
+            if ( props.match.params.id ) {
+                axios.get('/quizes/' + props.match.params.id)
+                .then(res => {
+                    const fetchedQuestions = [];
+                    for (let key in res.data.questions) {
+                        fetchedQuestions.push({
+                            id: res.data.questions[key].id,
+                            content: res.data.questions[key].content,
+                            choices: res.data.questions[key].choices
+                        });
+                    }
+                    setQuestionSize(res.data.questions.length);
+                    setQuestionsData(fetchedQuestions);
+                });
+            };
+        };
         setQuestions();
-    }, []);
+    }, [props.match.params.id]);
     
     const answerQuestionHandler = (answer) => {
         setCurrentIndex(currentIndex + 1);
